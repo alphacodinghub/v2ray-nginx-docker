@@ -1,0 +1,14 @@
+# https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+
+.env
+.idea
+deploy.sh
+
+#letsencrypt generated certificates
+letsencrypt/
+
+#logs
+logs/
+
+#run folder - files in these folders are programme generated  
+run/

@@ -1,0 +1,30 @@
+{
+	"log": {
+		"access": "/var/log/v2ray/access.log",
+		"error": "/var/log/v2ray/error.log",
+		"loglevel": "debug"
+	},
+	"inbound": {
+		"port": 30003,
+		"listen":"127.0.0.1",
+		"protocol": "vmess",
+		"settings": {
+			"clients": [
+				{
+					"id": "CLIENT_ID",
+					"alterId": CLIENT_ALTERID
+				}
+			]
+		},
+		"streamSettings":{
+			"network":"ws",
+			"wsSettings": {
+			"path": "CLIENT_WSPATH"
+			}
+		}
+	},
+	"outbound": {
+		"protocol": "freedom",
+		"settings": {}
+	}
+}

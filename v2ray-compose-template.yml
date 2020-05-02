@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  ################################################
+  ####     v2ray server container      #####
+  ##############################################
+  achanchor-v2ray:
+    image: alphacodinghub/v2ray-nginx
+    container_name: achanchor-v2ray
+    restart: always
+    networks:
+      - web
+    labels:
+      #### Labels define the behavior and rules of the traefik proxy for this container ####
+      traefik.enable: true # <== Enable traefik to proxy this container
+      traefik.http.routers.achanchor-v2ray.rule: Host(`achanchor.${APP_DOMAIN}`) # <== Your Domain Name for the https rule
+      traefik.http.routers.achanchor-v2ray.entrypoints: web-secured # <== Defining entrypoint for https, **ref: line 31
+      traefik.http.routers.achanchor-v2ray.tls.certresolver: mytlschallenge # <== Defining certsresolvers for https
+
+# networks and volumes
+networks:
+  web:
+    external: true
