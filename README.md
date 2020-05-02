@@ -1,7 +1,7 @@
 # v2ray-arukas-all-in-one
 
-![](https://img.shields.io/badge/language-Docker-orange.svg)
-
+![](https://img.shields.io/badge/language-Web-orange.svg)
+![](https://img.shields.io/badge/platform-Docker-lightgrey.svg)
 A v2ray docker image work with nginx for Arukas/IBM/okteto
 
 - v2ray work with websocket
