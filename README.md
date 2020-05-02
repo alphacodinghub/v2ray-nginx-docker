@@ -1,11 +1,11 @@
-# v2ray-arukas-all-in-one
+# v2ray-ws-tls-all-in-one
 
-![](https://img.shields.io/badge/language-Web-orange.svg)
-![](https://img.shields.io/badge/platform-Docker-lightgrey.svg)
-![](https://img.shields.io/badge/license-MIT-000000.svg)
-[![](https://img.shields.io/badge/Web-@Baidu-blue.svg)](https://baidu.com)
 <a href="https://github.com/alphacodinghub/v2ray-docker/"><img src="https://img.shields.io/badge/Docker-v2ray-4BC51D.svg?style=flat"></a>
-<br>**A v2ray docker image work with nginx for Arukas/IBM/okteto**
+![](https://img.shields.io/badge/language-Web-orange.svg)
+![](https://img.shields.io/badge/platform-Docker-lightgrey.svg)[![](https://img.shields.io/badge/Traefik-v2.x-blue.svg)](https://containo.us/traefik/)
+![](https://img.shields.io/badge/license-MIT-000000.svg)
+
+**A v2ray docker image work with nginx**
 
 - v2ray work with websocket
 - v2ray request proxy_pass by nginx
@@ -25,7 +25,7 @@
 
 实例教程参考 ：
 
-- <a href="https://doubibackup.com/v2ray-ws-tls-nginx.html" target="_blank">V2Ray+WebSocket+TLS+Nginx 配置与使用教程</a>
+- [V2Ray+WebSocket+TLS+Nginx 配置与使用教程](https://doubibackup.com/v2ray-ws-tls-nginx.html)
 - https://toutyrater.github.io/advanced/wss_and_web.html
 - https://bawodu.com/openshift-v2ray/
 - <a href="https://github.com/v2fly/docker">Official Dockerfile</a>
