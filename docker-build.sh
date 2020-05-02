@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 TAG="4.23"
 docker build -t alphacodinghub/v2ray-nginx:$TAG .
