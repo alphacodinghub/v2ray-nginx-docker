@@ -5,7 +5,7 @@ services:
   ####        Traefik Proxy Setup           #####
   ###############################################
   traefik:
-    image: traefik:v2.2
+    image: traefik:v2.2.1
     restart: always
     container_name: traefik
     ports:
@@ -18,11 +18,10 @@ services:
       - --api.dashboard=true # <== Enabling the dashboard to view services, middlewares, routers, etc...
       - --api.debug=true # <== Enabling additional endpoints for debugging and profiling
       ## Log Settings (options: ERROR, DEBUG, PANIC, FATAL, WARN, INFO) - https://docs.traefik.io/observability/logs/ ##
-      - --log.level=WARN # <== Setting the level of the logs from traefik
+      - --log.level=DEBUG # <== Setting the level of the logs from traefik
       ## Provider Settings - https://docs.traefik.io/providers/docker/#provider-configuration ##
       - --providers.docker=true # <== Enabling docker as the provider for traefik
       - --providers.docker.exposedbydefault=false # <== Don't expose every container to traefik, only expose enabled ones
-      - --providers.docker.network=web # <== Operate on the docker network named web on frontend
       ## Entrypoints Settings - https://docs.traefik.io/routing/entrypoints/#configuration ##
       - --entrypoints.web.address=:80 # <== Defining an entrypoint for port :80 named web
       - --entrypoints.web-secured.address=:443 # <== Defining an entrypoint for https on port :443 named web-secured
@@ -31,8 +30,8 @@ services:
       - --certificatesresolvers.mytlschallenge.acme.email=${ACME_EMAIL} # <== Setting email for certs
       - --certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json # <== Defining acme file to store cert information
     volumes:
-      - ./config/traefik/letsencrypt:/letsencrypt # <== Volume for certs (TLS)
-      - /var/run/docker.sock:/var/run/docker.sock # <== Volume for docker admin
+      - ./conf/traefik/letsencrypt:/letsencrypt # <== Volume for certs (TLS)
+      - /var/run/docker.sock:/var/run/docker.sock # <== Volume for docker admin. Don't change it!
     labels:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       traefik.enable: true # <== Enable traefik on itself to view dashboard and assign subdomain to view it
@@ -57,11 +56,20 @@ services:
   ##############################################
   v2ray:
     image: alphacodinghub/v2ray-nginx
+    ports:
+      - ${LISTENING_PORT:-3003}
     container_name: v2ray
     restart: always
+    environment:
+      LISTENING_PORT: ${LISTENING_PORT:-3003}
+      CLIENT_ID: ${CLIENT_ID:-2e5762cc-20d2-42b1-b0ad-cbe55dc5fa35}
+      CLIENT_ALTERID: ${CLIENT_ALTERID:-64}
+      CLIENT_WSPATH: ${CLIENT_WSPATH:-/allproducts}
+    volumes:
+      - ./conf/html:/var/www/html
     labels:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       traefik.enable: true # <== Enable traefik to proxy this container
-      traefik.http.routers.v2ray.rule: Host(`$(APP_NAME).${APP_DOMAIN}`) # <== Your Domain Name for the https rule
+      traefik.http.routers.v2ray.rule: Host(`${APP_NAME}.${APP_DOMAIN}`) # && PathPrefix(`${CLIENT_WSPATH:-/allproducts}`) # <== Your Domain Name for the https rule
       traefik.http.routers.v2ray.entrypoints: web-secured # <== Defining entrypoint for https, **ref: line 31
       traefik.http.routers.v2ray.tls.certresolver: mytlschallenge # <== Defining certsresolvers for https

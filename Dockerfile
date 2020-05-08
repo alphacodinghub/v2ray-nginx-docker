@@ -14,8 +14,9 @@ LABEL Maintainer="George Zhou<alphacodinghub@outlook.com >" \
   Language="HTML" \
   OS="Alpine Linux" \
   Service="V2Ray" \
-  Content="V2RAY"
+  Content="V2RAY and Nginx server"
 
+ENV LISTENING_PORT 3456
 ENV CLIENT_ID "2e5762cc-20d2-42b1-b0ad-cbe55dc5fa35"
 ENV CLIENT_ALTERID 64
 ENV CLIENT_WSPATH "/allproducts"
