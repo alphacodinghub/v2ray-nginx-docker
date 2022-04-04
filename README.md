@@ -11,7 +11,7 @@
 
 - The Docker image is based on the latest official release and integrated with Nginx and a basic website.
 - Deployment using Traefik, easy operation.
-- Traefik automatically manages ssl certificates.
+- Traefik automatically manages/renews ssl certificates.
 - A basic static website is integrated with the image. It will redirect to baidu.com by default however you can replace it with your own real website.
 - V2Ray parameters can be easily customized using the `.env` file. You don't need to change the `docker-compose.yml` file.
 - Main parameters you can customize indlude domain name, UUID, v2ray listening port, and the camouflaged path.
@@ -60,8 +60,8 @@ After above settings, you can run the following command in folder `/app/v2ray-ng
 
 Run this command to check the running containers: `docker ps`.
 
-To access to Traefik Dashboard：https://traefik.example.com
-To visit the camouflaged website：https://myapp.example.com
+To access to Traefik Dashboard：<https://traefik.example.com>
+To visit the camouflaged website：<https://myapp.example.com>
 
 ## Client configuration
 
@@ -73,4 +73,4 @@ Download the Windows client V2RayN, run it and click the menu: server - add [VMe
 - [Official Project V Website](https://www.v2ray.com/)
 - [新白话文教程-V2Ray 配置指南](https://guide.v2fly.org/)
 - <a href="https://github.com/v2fly/docker">Official Dockerfile</a>
-- https://github.com/v2ray/ext
+- <https://github.com/v2ray/ext>
